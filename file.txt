@@ -1,0 +1,3 @@
+2 * trzy
+2 * trzy + 4
+jeden + 2 * trzy + 4
