@@ -1,0 +1,19 @@
+.data
+result1:	.word	0
+x:	.word	0
+.text
+# 3+2
+li $t0, 3
+li $t1, 2
+add $t0 , $t0 , $t1
+sw $t0 , result1
+
+label1:
+li $t1 , result1
+li $t0 , 3
+bge $t0, $t1 ,label2
+#x=0
+l1 $t0, 0
+sw $t0, x
+b label1
+label2:

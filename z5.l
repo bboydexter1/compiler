@@ -12,21 +12,33 @@ extern int yylineno;
 "float"		{fprintf(yyout, "float\n");return FLOAT;} 
 "string"	{fprintf(yyout, "string\n");return STRING;} 
 "if"		{fprintf(yyout, "if\n");return IF;} 
+"else"		{fprintf(yyout, "else\n");return ELSE;} 
 "while"		{fprintf(yyout, "while\n");return WHILE;} 
+"print"		{fprintf(yyout, "print\n");return PR;} 
+"read"		{fprintf(yyout, "print\n");return RD;} 
 \+			{fprintf(yyout, "+\n");return '+';} 
 \*			{fprintf(yyout, "*\n");return '*';}
 \(			{fprintf(yyout, "(\n");return '(';}
 \)			{fprintf(yyout, ")\n");return ')';}
 \[			{fprintf(yyout, "[\n");return '[';}
+\{			{fprintf(yyout, "{\n");return '{';}
+\}			{fprintf(yyout, "}\n");return '}';}
+\"			{fprintf(yyout, "\n");return '"';}
 \]			{fprintf(yyout, "]\n");return ']';}
 \/			{fprintf(yyout, "/\n");return '/';}
 \-			{fprintf(yyout, "-\n");return '-';}
+\=\=		{fprintf(yyout, "==\n");return EQ;}
+\>			{fprintf(yyout, ">\n");return '>';}
+\>\=		{fprintf(yyout, ">=\n");return MEQ;}
+\<			{fprintf(yyout, "<\n");return '<';}
+\<\=		{fprintf(yyout, "<=\n");return LEQ;}
+\!\=		{fprintf(yyout, "!=\n");return NEQ;}
 \=			{
 				fprintf(yyout, "=\n");
 				return '=';
 			}
 \/\/		{fprintf(yyout, "KOM\n");return KOM;}
-[1-9][0-9]*	{
+[1-9][0-9]*|0	{
 				fprintf(yyout, "liczba całkowita\n");
 				yylval.ival = atoi(yytext);
 				return LC;
@@ -41,8 +53,12 @@ extern int yylineno;
 				yylval.text = strdup(yytext);
 				return ID;
 			}
+\"[A-Za-z_][A-Za-z0-9_]*\"	{
+				yylval.text = strdup(yytext);
+				return STR;
+			}
 \ |\t|\n	{;}
-\;			{yylineno++;}
+\;			{yylineno++;return ';';}
 .			{yyerror("Blad leksykalny\n");}
 %%
 int yyerror(const char *msg,...)
