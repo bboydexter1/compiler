@@ -14,8 +14,9 @@ extern int yylineno;
 "if"		{fprintf(yyout, "if\n");return IF;} 
 "else"		{fprintf(yyout, "else\n");return ELSE;} 
 "while"		{fprintf(yyout, "while\n");return WHILE;} 
-"print"		{fprintf(yyout, "print\n");return PR;} 
-"read"		{fprintf(yyout, "print\n");return RD;} 
+"print"		{fprintf(yyout, "print\n");return PR;}
+"println"	{fprintf(yyout, "println\n");return PRN;} 
+"read"		{fprintf(yyout, "read\n");return RD;} 
 \+			{fprintf(yyout, "+\n");return '+';} 
 \*			{fprintf(yyout, "*\n");return '*';}
 \(			{fprintf(yyout, "(\n");return '(';}
@@ -48,14 +49,10 @@ extern int yylineno;
 				yylval.fval = atof(yytext);
 				return LR;
 			}			
-[A-Za-z_][A-Za-z0-9_]*	{
+[A-Za-z][A-Za-z0-9]*	{
 				fprintf(yyout, "nazwa\n");
 				yylval.text = strdup(yytext);
 				return ID;
-			}
-\"[A-Za-z_][A-Za-z0-9_]*\"	{
-				yylval.text = strdup(yytext);
-				return STR;
 			}
 \ |\t|\n	{;}
 \;			{yylineno++;return ';';}

@@ -1,5 +1,23 @@
-
-if(x<5+1)
+int i = 0 ;
+	
+read(i);
+if(i <= 5)
 {
-x=100;
+	print("i is smaller or equal than five");
+	if(i<2)
+	{
+		print("i is smaller two");
+		if(i<1)
+		{print("i is smaller one");}
+	}else
+	{
+		print("i is bigger two");
+	}
+}else
+{
+	print("i is bigger than five");
+
+	if(i>7)
+	{print("i is bigger seven");}else
+	{print("i is smaller or equal to seven");}
 }

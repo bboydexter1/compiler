@@ -1,2 +1,16 @@
-int x = 5+5 ;
-int y = 2+1 ;
+int i = 2.2;
+float f = i;
+
+### 
+float f = 2.2;
+int i = f;
+##
+float f = 2.2;
+int i = f;
+##
+float f = 2.2 + 3.4 /2 ; 
+##
+int i = 2.2;
+
+#
+float f = 1;
